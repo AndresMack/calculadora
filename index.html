@@ -1,128 +1,1010 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Porcentajes</title>
+    <title>Hoja de Ruta - Clase de Carnes de Res I</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        culinary: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#d97706',
+                            800: '#92400e',
+                            900: '#78350f',
+                        },
+                        meat: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            900: '#7f1d1d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f2f2f7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
+        @media print {
+            .no-print { display: none !important; }
+            .print-full { width: 100% !important; max-width: 100% !important; box-shadow: none !important; }
         }
-        .calculator {
-            width: 320px;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            background-color: #ffffff;
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
         }
-        .calculator h1 {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1c1c1e;
-            text-align: center;
-            margin-bottom: 20px;
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
         }
-        .input-container {
-            display: flex;
-            margin-bottom: 20px;
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
-        .input-container input {
-            flex: 1;
-            padding: 10px;
-            font-size: 18px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            outline: none;
-            text-align: center;
-        }
-        .results, .actions, .message {
-            font-size: 18px;
-            color: #1c1c1e;
-            text-align: left;
-        }
-        .results div, .message div {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #f7f7f7;
-            border-radius: 8px;
-        }
-        .actions {
-            margin-top: 20px;
-        }
-        .actions select, .actions button {
-            font-size: 16px;
-            padding: 10px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            width: 100%;
-            margin-top: 10px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
 </head>
-<body>
-    <div class="calculator">
-        <h1>Distribución de Gastos</h1>
-        <div class="input-container">
-            <input type="number" id="amount" placeholder="Ingrese un monto" oninput="calculateDistribution()">
-        </div>
-        <div class="results" id="results">
-            <div>Ahorro (40%): $0</div>
-            <div>Gastos (30%): $0</div>
-            <div>Deuda (20%): $0</div>
-            <div>Gustos (10%): $0</div>
-        </div>
-        <div class="actions">
-            <label for="payment-source">¿De dónde proviene el dinero?</label>
-            <select id="payment-source">
-                <option value="">Seleccione una opción</option>
-                <option value="daviplata">Daviplata</option>
-                <option value="bancolombia">Bancolombia</option>
-                <option value="nequi">Nequi</option>
-            </select>
-            <button onclick="processSource()">Procesar</button>
-        </div>
-        <div class="message" id="message"></div>
-    </div>
+<body class="h-full flex flex-col text-slate-800 antialiased">
 
-    <script>
-        function calculateDistribution() {
-            const amount = parseFloat(document.getElementById('amount').value) || 0;
-            const ahorro = (amount * 0.40).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            const gastos = (amount * 0.30).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            const deuda = (amount * 0.20).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            const gustos = (amount * 0.10).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    <!-- Header Principal -->
+    <header class="bg-gradient-to-r from-meat-900 to-slate-900 text-white shadow-md no-print">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-meat-700 p-2.5 rounded-lg shadow-inner">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2a5 5 0 00-5 5v2a3 3 0 000 6v4a2 2 0 002 2h6a2 2 0 002-2v-4a3 3 0 000-6V7a5 5 0 00-5-5z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17h6M8 13h8" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight">HOJA DE RUTA CRONOLÓGICA</h1>
+                    <p class="text-xs sm:text-sm text-meat-100 font-medium">Clase 15: Carnes de Res I - Servicio Limite 9:10 AM</p>
+                </div>
+            </div>
             
-            document.getElementById('results').innerHTML = `
-                <div>Ahorro (40%): $${ahorro}</div>
-                <div>Gastos (30%): $${gastos}</div>
-                <div>Deuda (20%): $${deuda}</div>
-                <div>Gustos (10%): $${gustos}</div>
-            `;
+            <!-- Cronómetro de la clase (00:00:00 a 02:10:00) -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 bg-slate-800/85 px-4 py-2.5 rounded-xl border border-slate-700">
+                <div class="text-center sm:text-right">
+                    <span class="block text-[9px] text-slate-400 uppercase tracking-widest font-semibold">Cronómetro de Cocina</span>
+                    <span id="clock-display" class="text-xl sm:text-2xl font-mono font-bold text-amber-400">00:00:00</span>
+                </div>
+                <div class="flex flex-col gap-1.5 w-full sm:w-auto">
+                    <div class="flex gap-1.5 justify-center">
+                        <button id="time-btn" onclick="toggleKitchenTimeline()" class="bg-amber-500 hover:bg-amber-600 active:scale-95 transition text-slate-950 px-2.5 py-1 rounded text-xs font-bold">
+                            Iniciar Servicio
+                        </button>
+                        <button onclick="resetKitchenTimeline()" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-2 py-1 rounded text-[10px]">
+                            Reiniciar
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center gap-1">
+                        <input type="checkbox" id="speed-toggle" class="h-3 w-3 rounded text-amber-500 focus:ring-amber-500 border-slate-600 bg-slate-700">
+                        <label for="speed-toggle" class="text-[9px] text-slate-300 cursor-pointer">Acelerador de tiempo</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Pestañas de Navegación -->
+    <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-30 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex space-x-2 py-3 overflow-x-auto whitespace-nowrap">
+                <button onclick="switchView('master-table')" id="tab-master-table" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-meat-700 text-white shadow-sm">
+                    📋 Vista General de Recetas
+                </button>
+                <button onclick="switchView('santiago')" id="tab-santiago" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    👨‍🍳 Santiago
+                </button>
+                <button onclick="switchView('claudia')" id="tab-claudia" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    👩‍🍳 Claudia
+                </button>
+                <button onclick="switchView('juanpablo')" id="tab-juanpablo" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    👨‍🍳 Juan Pablo
+                </button>
+                <button onclick="switchView('manuela')" id="tab-manuela" class="nav-tab px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    👩‍🍳 Manuela
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 overflow-y-auto">
+
+        <!-- ==================== VISTA 1: TABLA GENERAL DE RECETAS ==================== -->
+        <div id="view-master-table" class="view-pane space-y-8">
+            
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex flex-col sm:flex-row justify-between items-center gap-4 no-print">
+                <div class="text-xs text-amber-950 leading-relaxed">
+                    <p class="font-bold text-sm mb-1">⏱️ Cronología de Cocción Real - Inicio: 00:00:00 / Término: 02:10:00</p>
+                    <p>Las tareas están estrictamente ordenadas y distribuidas entre los integrantes para lograr un servicio en punto.</p>
+                </div>
+                <button onclick="window.print()" class="bg-white hover:bg-slate-50 border border-slate-300 shadow-sm text-slate-700 px-4 py-2 rounded-lg text-xs font-medium flex items-center gap-2 transition whitespace-nowrap">
+                    🖨️ Imprimir Ruta
+                </button>
+            </div>
+
+            <!-- SECCIÓN RECETA 1 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-5 bg-gradient-to-r from-red-50 to-rose-100 border-b border-slate-200">
+                    <h2 class="text-base font-bold text-red-950 flex items-center gap-2">
+                        🍳 RECETA 1: Tournedos bordelaise, zanahorias y cebollitas glaseadas, papa maxime
+                    </h2>
+                    <p class="text-xs text-red-900 mt-1">Servicio programado: de 01:55:00 a 02:00:00 en el cronómetro</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[1000px]">
+                        <thead>
+                            <tr class="bg-slate-800 text-white text-[10px] uppercase tracking-wider">
+                                <th class="py-3 px-4 w-1/6">Responsable</th>
+                                <th class="py-3 px-4 w-1/6">Sub-Preparación</th>
+                                <th class="py-3 px-4 w-1/6">Horario de Trabajo</th>
+                                <th class="py-3 px-4 w-2/6">Ingredientes</th>
+                                <th class="py-3 px-4 w-3/6">Procedimiento Paso a Paso</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-xs">
+                            <!-- Santiago - Tournedos -->
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-4 px-4 font-bold text-slate-900 border-r border-slate-100">
+                                    Santiago
+                                </td>
+                                <td class="py-4 px-4 font-semibold text-red-800 border-r border-slate-100">
+                                    Tournedos de res
+                                </td>
+                                <td class="py-4 px-4 font-mono font-bold text-slate-600 border-r border-slate-100">
+                                    00:15:00 - 00:25:00 <br>
+                                    01:40:00 - 01:55:00
+                                </td>
+                                <td class="py-4 px-4 border-r border-slate-100 bg-slate-50/10">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Lomo de res: 1 Unidad</li>
+                                        <li>Aceite de girasol: 50 Mililitros</li>
+                                        <li>Mantequilla: 10 Gramos</li>
+                                        <li>Sal y pimienta negra molida: C/N</li>
+                                        <li>Brida de cocina</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4 text-slate-700 leading-relaxed">
+                                    <ol class="list-decimal pl-4 space-y-1.5">
+                                        <li>Limpiar la grasa y membranas exteriores del centro del lomo de res.</li>
+                                        <li>Cortar las porciones de tournedos manteniendo un grosor alto y cilíndrico.</li>
+                                        <li>Sujetar el contorno de cada pieza firmemente con la brida de cocina.</li>
+                                        <li>Reservar en frío y sacar a atemperar a la hora 01:20:00 del cronómetro.</li>
+                                        <li>A la hora 01:40:00 sellar con aceite caliente y mantequilla en sartén dorando cada cara.</li>
+                                        <li>Finalizar la cocción en el horno precalentado a 180 grados centígrados y dejar reposar 5 minutos.</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                            <!-- Claudia - Salsa Bordelaise -->
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-4 px-4 font-bold text-slate-900 border-r border-slate-100">
+                                    Claudia
+                                </td>
+                                <td class="py-4 px-4 font-semibold text-red-800 border-r border-slate-100">
+                                    Salsa Bordelaise
+                                </td>
+                                <td class="py-4 px-4 font-mono font-bold text-slate-600 border-r border-slate-100">
+                                    00:20:00 - 00:55:00 <br>
+                                    01:45:00 - 01:55:00
+                                </td>
+                                <td class="py-4 px-4 border-r border-slate-100 bg-slate-50/10">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Fondo oscuro de res ligado: 200 Mililitros</li>
+                                        <li>Vino tinto: 150 Mililitros</li>
+                                        <li>Pimienta negra molida: C/N</li>
+                                        <li>Cebolla ocañera: 100 Gramos</li>
+                                        <li>Tomillo: briznas</li>
+                                        <li>Laurel: 1 Hoja</li>
+                                        <li>Mantequilla: C/N</li>
+                                        <li>Perejil: 2 Gramos</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4 text-slate-700 leading-relaxed">
+                                    <ol class="list-decimal pl-4 space-y-1.5">
+                                        <li>Sudar la cebolla ocañera con corte doble cincelado en una olla pequeña con mantequilla.</li>
+                                        <li>Incorporar el vino tinto, la pimienta negra molida, el laurel y el tomillo.</li>
+                                        <li>Llevar a ebullición, bajar el fuego y reducir el volumen al 50 por ciento.</li>
+                                        <li>Reducir el fondo de res ligado en un cazo pequeño al 25 por ciento de su volumen original.</li>
+                                        <li>Unir la infusión de vino colada con el fondo reducido. Hervir y rectificar la sal.</li>
+                                        <li>A la hora 01:45:00 calentar la salsa y montar en frío agregando trozos de mantequilla helada batiendo continuamente.</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                            <!-- Juan Pablo - Papa Maxime -->
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-4 px-4 font-bold text-slate-900 border-r border-slate-100">
+                                    Juan Pablo
+                                </td>
+                                <td class="py-4 px-4 font-semibold text-red-800 border-r border-slate-100">
+                                    Papa maxime
+                                </td>
+                                <td class="py-4 px-4 font-mono font-bold text-slate-600 border-r border-slate-100">
+                                    00:35:00 - 01:15:00
+                                </td>
+                                <td class="py-4 px-4 border-r border-slate-100 bg-slate-50/10">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Papa sabanera: 4 Unidades</li>
+                                        <li>Mantequilla clarificada: 40 Gramos</li>
+                                        <li>Aceite de girasol: 40 Mililitros</li>
+                                        <li>Sal y pimienta negra molida: C/N</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4 text-slate-700 leading-relaxed">
+                                    <ol class="list-decimal pl-4 space-y-1.5">
+                                        <li>Pelar las papas y tornearlas buscando un cilindro perfecto.</li>
+                                        <li>Cortar las papas en láminas extremadamente delgadas con mandolina. Evitar lavarlas con agua.</li>
+                                        <li>Disponer las láminas en forma de flor cubriendo la base de una sartén.</li>
+                                        <li>Pincelar con mantequilla clarificada y sazonar con sal y pimienta.</li>
+                                        <li>Dorar por ambos lados a fuego medio controlando que queden crujientes. Reservar sobre rejilla.</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                            <!-- Manuela - Zanahorias y Cebollitas -->
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-4 px-4 font-bold text-slate-900 border-r border-slate-100">
+                                    Manuela
+                                </td>
+                                <td class="py-4 px-4 font-semibold text-red-800 border-r border-slate-100">
+                                    Zanahoria y cebollitas glaseadas
+                                </td>
+                                <td class="py-4 px-4 font-mono font-bold text-slate-600 border-r border-slate-100">
+                                    00:20:00 - 00:45:00
+                                </td>
+                                <td class="py-4 px-4 border-r border-slate-100 bg-slate-50/10">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Cebollas ocañeras: 120 Gramos</li>
+                                        <li>Zanahorias medianas: 450 Gramos</li>
+                                        <li>Azúcar blanca: 50 Gramos</li>
+                                        <li>Mantequilla: 50 Gramos</li>
+                                        <li>Agua: C/N</li>
+                                        <li>Sal: C/N</li>
+                                        <li>Papel encerado</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4 text-slate-700 leading-relaxed">
+                                    <ol class="list-decimal pl-4 space-y-1.5">
+                                        <li>Lavar, pelar y tornear las zanahorias en formas de barriles de 5 centímetros de alto y 2.5 centímetros de diámetro con 7 caras simétricas.</li>
+                                        <li>Lavar y pelar las cebollitas ocañeras de forma redondeada y regular.</li>
+                                        <li>Colocar los vegetales en una cacerola pequeña junto con la mantequilla, azúcar, sal y agua.</li>
+                                        <li>Cubrir con un cartucho de papel encerado con un orificio pequeño de ventilación en el centro.</li>
+                                        <li>Cocinar a fuego lento hasta que se consuma el agua y los vegetales adquieran un glaseado brillante.</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECCIÓN RECETA 2 -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="p-5 bg-gradient-to-r from-amber-50 to-orange-100 border-b border-slate-200">
+                    <h2 class="text-base font-bold text-amber-950 flex items-center gap-2">
+                        🍳 RECETA 2: Entrecote, salsa diabla, papa paille, confit de tomate y pimentón
+                    </h2>
+                    <p class="text-xs text-amber-900 mt-1">Servicio programado: de 02:00:00 a 02:10:00 en el cronómetro</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[1000px]">
+                        <thead>
+                            <tr class="bg-slate-800 text-white text-[10px] uppercase tracking-wider">
+                                <th class="py-3 px-4 w-1/6">Responsable</th>
+                                <th class="py-3 px-4 w-1/6">Sub-Preparación</th>
+                                <th class="py-3 px-4 w-1/6">Horario de Trabajo</th>
+                                <th class="py-3 px-4 w-2/6">Ingredientes</th>
+                                <th class="py-3 px-4 w-3/6">Procedimiento Paso a Paso</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-xs">
+                            <!-- Santiago - Entrecote -->
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-4 px-4 font-bold text-slate-900 border-r border-slate-100">
+                                    Santiago
+                                </td>
+                                <td class="py-4 px-4 font-semibold text-amber-800 border-r border-slate-100">
+                                    Entrecote
+                                </td>
+                                <td class="py-4 px-4 font-mono font-bold text-slate-600 border-r border-slate-100">
+                                    00:25:00 - 00:45:00 <br>
+                                    01:50:00 - 02:05:00
+                                </td>
+                                <td class="py-4 px-4 border-r border-slate-100 bg-slate-50/10">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Entrecote chata: 600 Gramos</li>
+                                        <li>Aceite de girasol: 10 Mililitros</li>
+                                        <li>Sal y pimienta negra molida: C/N</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4 text-slate-700 leading-relaxed">
+                                    <ol class="list-decimal pl-4 space-y-1.5">
+                                        <li>Limpiar y porcionar el corte de entrecote de 600 gramos retirando los extremos.</li>
+                                        <li>Reservar en refrigeración y sacar a atemperar a la hora 01:30:00 del cronómetro.</li>
+                                        <li>A la hora 01:50:00 calentar un grill o parrilla de hierro a máxima temperatura.</li>
+                                        <li>Pincelar la carne con una fina capa de aceite de girasol y salpimentar generosamente.</li>
+                                        <li>Colocar la pieza en diagonal sobre el grill, girar 90 grados para marcar el cuadriculado y dar la vuelta.</li>
+                                        <li>Retirar de la parrilla y mantener en reposo cubierto para que los jugos se equilibren antes de trinchar.</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                            <!-- Claudia - Salsa Diabla -->
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-4 px-4 font-bold text-slate-900 border-r border-slate-100">
+                                    Claudia
+                                </td>
+                                <td class="py-4 px-4 font-semibold text-amber-800 border-r border-slate-100">
+                                    Salsa diabla
+                                </td>
+                                <td class="py-4 px-4 font-mono font-bold text-slate-600 border-r border-slate-100">
+                                    00:55:00 - 01:20:00 <br>
+                                    02:00:00 - 02:05:00
+                                </td>
+                                <td class="py-4 px-4 border-r border-slate-100 bg-slate-50/10">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Pasta de tomate: 80 Gramos</li>
+                                        <li>Vinagre de vino: 15 Mililitros</li>
+                                        <li>Vino blanco: 50 Mililitros</li>
+                                        <li>Cebolla ocañera: 50 Gramos</li>
+                                        <li>Pimienta en grano: C/N</li>
+                                        <li>Fondo oscuro de res: 200 Mililitros</li>
+                                        <li>Tabasco: C/N</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4 text-slate-700 leading-relaxed">
+                                    <ol class="list-decimal pl-4 space-y-1.5">
+                                        <li>Sudar en mantequilla la cebolla ocañera finamente cortada junto con la pimienta mignonette.</li>
+                                        <li>Desglasar vertiendo el vino blanco y el vinagre de vino. Dejar reducir de forma controlada.</li>
+                                        <li>Incorporar la pasta de tomate y el fondo oscuro de res. Cocinar a fuego lento para integrar sabores.</li>
+                                        <li>Agregar gotas de tabasco para lograr un picor equilibrado. Colar la salsa.</li>
+                                        <li>Reservar y volver a calentar justo antes del servicio, montando con una nuez de mantequilla fría.</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                            <!-- Juan Pablo - Confit de Tomate y Pimentón -->
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-4 px-4 font-bold text-slate-900 border-r border-slate-100">
+                                    Juan Pablo
+                                </td>
+                                <td class="py-4 px-4 font-semibold text-amber-800 border-r border-slate-100">
+                                    Confit de tomate y pimentón
+                                </td>
+                                <td class="py-4 px-4 font-mono font-bold text-slate-600 border-r border-slate-100">
+                                    00:10:00 - 00:35:00 <br>
+                                    01:15:00 - 01:40:00
+                                </td>
+                                <td class="py-4 px-4 border-r border-slate-100 bg-slate-50/10">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Tomates maduros: 250 Gramos</li>
+                                        <li>Pimentón rojo: 100 Gramos</li>
+                                        <li>Cebolla cabezona: 100 Gramos</li>
+                                        <li>Ajo picado: 1 Diente</li>
+                                        <li>Aceite de oliva: C/N</li>
+                                        <li>Aceitunas negras: 10 Gramos</li>
+                                        <li>Albahaca fresca: 10 Gramos</li>
+                                        <li>Aros metálicos: 2 Unidades</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4 text-slate-700 leading-relaxed">
+                                    <ol class="list-decimal pl-4 space-y-1.5">
+                                        <li>Asar el pimentón rojo directo en el quemador hasta ennegrecer la piel por completo.</li>
+                                        <li>Envolver en bolsa cerrada durante 5 minutos, retirar la piel quemada, las semillas y cortar discos.</li>
+                                        <li>Retirar las semillas y piel a los tomates frescos y cortar en forma de pétalos limpios.</li>
+                                        <li>Dentro de los aros de montaje, superponer capas de tomate, cebolla cabezona pluma, pimentón asado, ajo picado y albahaca cortada.</li>
+                                        <li>Rociar aceite de oliva, agregar las aceitunas negras picadas y hornear a 100 grados centígrados por 40 minutos.</li>
+                                        <li>Dejar reposar y desmoldar tibio durante el emplatado final.</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                            <!-- Manuela - Papas Paille -->
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="py-4 px-4 font-bold text-slate-900 border-r border-slate-100">
+                                    Manuela
+                                </td>
+                                <td class="py-4 px-4 font-semibold text-amber-800 border-r border-slate-100">
+                                    Papa paille
+                                </td>
+                                <td class="py-4 px-4 font-mono font-bold text-slate-600 border-r border-slate-100">
+                                    00:45:00 - 01:30:00
+                                </td>
+                                <td class="py-4 px-4 border-r border-slate-100 bg-slate-50/10">
+                                    <ul class="list-disc pl-4 space-y-1 text-slate-600 text-[11px]">
+                                        <li>Papa sabanera: 4 Unidades</li>
+                                        <li>Aceite para fritura: 500 Mililitros</li>
+                                        <li>Sal: C/N</li>
+                                    </ul>
+                                </td>
+                                <td class="py-4 px-4 text-slate-700 leading-relaxed">
+                                    <ol class="list-decimal pl-4 space-y-1.5">
+                                        <li>Pelar las papas y rebanar con la ayuda de la mandolina en hilos delgados.</li>
+                                        <li>Sumergir las papas cortadas en agua con hielo para eliminar el almidón y endurecer.</li>
+                                        <li>Secar minuciosamente con paños secos para garantizar que queden sumamente crujientes.</li>
+                                        <li>Calentar el aceite para fritura profunda y freír las papas en porciones pequeñas.</li>
+                                        <li>Retirar del aceite, escurrir en papel absorbente y sazonar inmediatamente con sal.</li>
+                                    </ol>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==================== VISTA 2: SANTIAGO ==================== -->
+        <div id="view-santiago" class="view-pane hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-meat-100 text-meat-700 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">S</div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900 font-mono">Santiago - Flujo Individual</h2>
+                            <p class="text-xs text-slate-500">Atemperado, porcionado y cocción de proteínas de primera categoría</p>
+                        </div>
+                    </div>
+                    <div class="text-xs font-semibold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-100 font-mono">
+                        ⏰ Horario de Trabajo: 00:00:00 - 02:10:00
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 1: MISE EN PLACE SANTIAGO -->
+                <div class="mt-6 bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                        <h3 class="text-slate-900 font-bold text-sm flex items-center gap-2">
+                            <span>🔪</span> 1. MISE EN PLACE INDIVIDUAL (00:00:00 - 00:15:00)
+                        </h3>
+                        <span class="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Requisito Obligatorio</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Alistar la tabla de corte exclusiva para carnes rojas y afilar cuchillos de desposte y trinchado.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Preparar recipientes higienizados para recibir los recortes de carne y las porciones limpias.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Disponer la brida de cocina y las tijeras para el atado de los tournedos.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Ubicar el grill de hierro fundido y las sartenes pesadas sobre los quemadores listos para encender.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: TAREAS POR RECETA -->
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Receta 1 de Santiago -->
+                    <div class="space-y-4">
+                        <h3 class="text-slate-900 font-bold text-sm border-b border-slate-100 pb-2 flex justify-between">
+                            <span>🥩 Receta 1: Tournedos bordelaise</span>
+                            <span class="text-red-700 font-mono text-xs">00:15:00 - 00:25:00</span>
+                        </h3>
+                        
+                        <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-slate-700">Ingredientes:</span>
+                            <p class="text-slate-600">Lomo de res: 1 Unidad, Aceite de girasol: 50 Mililitros, Mantequilla: 10 Gramos, Sal, pimienta, brida.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="space-y-2">
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:15:00:</strong> Limpiar lomo, extraer cordón y cabeza del lomo. Cortar el centro obteniendo los medallones regulares de tournedos.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:20:00:</strong> Atar los cilindros de carne con hilo dándoles forma circular compacta. Reservar en frío. Sacar a atemperar a la hora 01:20:00.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>01:40:00:</strong> Sellar a alta temperatura con aceite y mantequilla. Finalizar cocción al horno a 180 grados y dar reposo.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl text-xs text-blue-900 mt-2">
+                            <span class="font-bold block mb-1">🤝 Al terminar de porcionar (00:25:00):</span>
+                            Apoyar a Juan Pablo pelando los pimentones asados bajo un chorro suave de agua fría para evitar demoras en el confitado de tomates.
+                        </div>
+                    </div>
+
+                    <!-- Receta 2 de Santiago -->
+                    <div class="space-y-4">
+                        <h3 class="text-slate-900 font-bold text-sm border-b border-slate-100 pb-2 flex justify-between">
+                            <span>🥩 Receta 2: Entrecote, salsa diabla</span>
+                            <span class="text-amber-700 font-mono text-xs">00:25:00 - 00:45:00</span>
+                        </h3>
+
+                        <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-slate-700">Ingredientes:</span>
+                            <p class="text-slate-600">Entrecote chata: 600 Gramos, Aceite de girasol: 10 Mililitros, Sal y pimienta negra molida.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="space-y-2">
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:25:00:</strong> Porcionar la porción de entrecote cortando un bife limpio de 600 gramos. Reservar en frío. Sacar a atemperar a la hora 01:30:00.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>01:50:00:</strong> Calentar fuertemente el grill. Pintar la carne con aceite y marcarla formando una rejilla de rombos. Girar y completar cocción.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>02:05:00:</strong> Dejar reposar el entrecote, cortarlo de forma diagonal y servir de inmediato.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl text-xs text-blue-900 mt-2">
+                            <span class="font-bold block mb-1">🤝 Al terminar porcionado total (00:45:00):</span>
+                            Controlar que las estaciones de trabajo mantengan orden y limpieza. Ayudar a calentar los platos de servicio.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== VISTA 3: CLAUDIA ==================== -->
+        <div id="view-claudia" class="view-pane hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-amber-100 text-amber-700 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">C</div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900 font-mono">Claudia - Flujo Individual</h2>
+                            <p class="text-xs text-slate-500">Elaboración técnica de salsas calientes y reducciones complejas</p>
+                        </div>
+                    </div>
+                    <div class="text-xs font-semibold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-100 font-mono">
+                        ⏰ Horario de Trabajo: 00:00:00 - 02:10:00
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 1: MISE EN PLACE CLAUDIA -->
+                <div class="mt-6 bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                        <h3 class="text-slate-900 font-bold text-sm flex items-center gap-2">
+                            <span>🔪</span> 1. MISE EN PLACE INDIVIDUAL (00:00:00 - 00:20:00)
+                        </h3>
+                        <span class="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Requisito Obligatorio</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Alistar ollas pequeñas para salsas, batidores manuales de globo y coladores finos o chinos.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Medir y separar los líquidos: vino tinto, vino blanco, vinagre de vino y el fondo oscuro de res.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Separar las porciones de cebolla ocañera necesarias para ambas recetas y picar todo en doble cincelado fino.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Alistar el laurel, las briznas de tomillo y realizar la pimienta mignonette machacando los granos enteros.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: TAREAS POR RECETA -->
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Receta 1 de Claudia -->
+                    <div class="space-y-4">
+                        <h3 class="text-slate-900 font-bold text-sm border-b border-slate-100 pb-2 flex justify-between">
+                            <span>🍷 Receta 1: Salsa Bordelaise</span>
+                            <span class="text-red-700 font-mono text-xs">00:20:00 - 00:55:00</span>
+                        </h3>
+                        
+                        <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-slate-700">Ingredientes:</span>
+                            <p class="text-slate-600">Fondo oscuro de res ligado: 200 Mililitros, Vino tinto: 150 Mililitros, Cebolla ocañera: 100 Gramos, Laurel, tomillo, mantequilla fría, perejil.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="space-y-2">
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:20:00:</strong> Sudar la cebolla ocañera picada en mantequilla sin dorar. Incorporar vino tinto, laurel, tomillo y pimienta mignonette.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:35:00:</strong> Reducir el líquido aromático de vino tinto al 50 por ciento. En paralelo reducir el fondo oscuro de res al 25 por ciento.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:45:00:</strong> Unir vino reducido colado y fondo reducido. A la hora 01:45:00, calentar la salsa y montar en frío batiendo vigorosamente cubos de mantequilla.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl text-xs text-blue-900 mt-2">
+                            <span class="font-bold block mb-1">🤝 Al completar la base bordelesa (00:55:00):</span>
+                            Continuar sin interrupciones con la preparación de la salsa diabla de la Receta 2.
+                        </div>
+                    </div>
+
+                    <!-- Receta 2 de Claudia -->
+                    <div class="space-y-4">
+                        <h3 class="text-slate-900 font-bold text-sm border-b border-slate-100 pb-2 flex justify-between">
+                            <span>🌶️ Receta 2: Salsa Diabla</span>
+                            <span class="text-amber-700 font-mono text-xs">00:55:00 - 01:20:00</span>
+                        </h3>
+
+                        <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-slate-700">Ingredientes:</span>
+                            <p class="text-slate-600">Pasta de tomate: 80 Gramos, Vinagre de vino: 15 Mililitros, Vino blanco: 50 Mililitros, Cebolla ocañera: 50 Gramos, Fondo oscuro: 200 Mililitros, tabasco.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="space-y-2">
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:55:00:</strong> Sofreír cebolla ocañera picada y pimienta mignonette en mantequilla. Desglasar agregando el vino blanco y el vinagre. Reducir.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>01:05:00:</strong> Incorporar la pasta de tomate y el fondo oscuro. Cocinar suavemente para concentrar sabores. Sazonar con sal.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>01:15:00:</strong> Añadir gotas de tabasco buscando picor medio, colar. Calentar y terminar montando con mantequilla a la hora 02:00:00.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl text-xs text-blue-900 mt-2">
+                            <span class="font-bold block mb-1">🤝 Al terminar ambas salsas (01:20:00):</span>
+                            Pasar a asistir a Manuela controlando la fritura uniforme de las papas paille para asegurar un resultado crocante.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== VISTA 4: JUAN PABLO ==================== -->
+        <div id="view-juanpablo" class="view-pane hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-100 text-emerald-700 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">JP</div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900 font-mono">Juan Pablo - Flujo Individual</h2>
+                            <p class="text-xs text-slate-500">Técnicas de precisión: corte en mandolina, torneado de papas y horneado lento</p>
+                        </div>
+                    </div>
+                    <div class="text-xs font-semibold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-100 font-mono">
+                        ⏰ Horario de Trabajo: 00:00:00 - 02:10:00
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 1: MISE EN PLACE JUAN PABLO -->
+                <div class="mt-6 bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                        <h3 class="text-slate-900 font-bold text-sm flex items-center gap-2">
+                            <span>🔪</span> 1. MISE EN PLACE INDIVIDUAL (00:00:00 - 00:10:00)
+                        </h3>
+                        <span class="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Requisito Obligatorio</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Alistar la mandolina, aros de metal para montaje, placa metálica para horno y el soplete o quemador para asar.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Lavar y disponer los tomates maduros, la cebolla cabezona, los dientes de ajo, aceitunas negras y albahaca fresca.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Reunir las papas sabaneras, pelador de papas e indicador para clarificar la mantequilla.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Preparar un recipiente limpio para desechar la cáscara de los vegetales y evitar desorden en la estación de trabajo.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: TAREAS POR RECETA -->
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Receta 2 de Juan Pablo (Se prioriza por tiempo de horneado) -->
+                    <div class="space-y-4">
+                        <h3 class="text-slate-900 font-bold text-sm border-b border-slate-100 pb-2 flex justify-between">
+                            <span>🍅 Receta 2: Confit de Tomate y Pimentón</span>
+                            <span class="text-amber-700 font-mono text-xs">00:10:00 - 00:35:00</span>
+                        </h3>
+                        
+                        <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-slate-700">Ingredientes:</span>
+                            <p class="text-slate-600">Tomate: 250 Gramos, Pimentón rojo: 100 Gramos, Cebolla cabezona: 100 Gramos, Ajo picado, aceite de oliva, aceitunas, albahaca.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="space-y-2">
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:10:00:</strong> Asar el pimentón rojo directo al fuego. Envolver en bolsa por 5 minutos, retirar la piel carbonizada y cortarlo en discos planos con molde.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:20:00:</strong> Pelar tomates retirando semillas y cortar en pétalos. Disponer aros en una placa aceitada e intercalar las capas de vegetales, ajo y albahaca.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:35:00:</strong> Agregar un chorro generoso de aceite de oliva y hornear a 100 grados centígrados durante 40 minutos.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl text-xs text-blue-900 mt-2">
+                            <span class="font-bold block mb-1">🤝 Al introducir el confit al horno (00:35:00):</span>
+                            Pasar directamente a preparar la papa Maxime de la Receta 1.
+                        </div>
+                    </div>
+
+                    <!-- Receta 1 de Juan Pablo -->
+                    <div class="space-y-4">
+                        <h3 class="text-slate-900 font-bold text-sm border-b border-slate-100 pb-2 flex justify-between">
+                            <span>🌸 Receta 1: Papa Maxime</span>
+                            <span class="text-red-700 font-mono text-xs">00:35:00 - 01:15:00</span>
+                        </h3>
+
+                        <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-slate-700">Ingredientes:</span>
+                            <p class="text-slate-600">Papa sabanera: 4 Unidades, Mantequilla clarificada: 40 Gramos, Aceite de girasol: 40 Mililitros, Sal y pimienta negra molida.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="space-y-2">
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:35:00:</strong> Pelar y tornear las papas buscando cilindros perfectos. Laminar en láminas sumamente delgadas con la mandolina.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:50:00:</strong> Evitar lavar las láminas de papa para mantener el almidón. Clarificar la mantequilla retirando los residuos de la superficie.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>01:00:00:</strong> Disponer las láminas en forma de flor en sartén con mantequilla caliente. Dorar y voltear con extremo cuidado para que doren por ambas caras.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl text-xs text-blue-900 mt-2">
+                            <span class="font-bold block mb-1">🤝 Al terminar las flores de papa (01:15:00):</span>
+                            Pasar a revisar si Manuela requiere asistencia torneando o controlando el almíbar de los vegetales glaseados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== VISTA 5: MANUELA ==================== -->
+        <div id="view-manuela" class="view-pane hidden space-y-6">
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                <!-- Header -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-slate-200">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-indigo-100 text-indigo-700 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg">M</div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900 font-mono">Manuela - Flujo Individual</h2>
+                            <p class="text-xs text-slate-500">Técnicas de torneado geométrico, cartucho de cocción y fritura profunda</p>
+                        </div>
+                    </div>
+                    <div class="text-xs font-semibold text-amber-700 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-100 font-mono">
+                        ⏰ Horario de Trabajo: 00:00:00 - 02:10:00
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 1: MISE EN PLACE MANUELA -->
+                <div class="mt-6 bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                        <h3 class="text-slate-900 font-bold text-sm flex items-center gap-2">
+                            <span>🔪</span> 1. MISE EN PLACE INDIVIDUAL (00:00:00 - 00:20:00)
+                        </h3>
+                        <span class="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded">Requisito Obligatorio</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Alistar cuchillo de oficio o puntilla torneadora, pelador, cacerola para glasear y olla profunda para freír.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Disponer las zanahorias, cebollas ocañeras, mantequilla, azúcar, sal y papel encerado para recortar el cartucho.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Preparar un tazón amplio con agua muy fría e hielos para el remojo de las papas paille cortadas.</span>
+                        </label>
+                        <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100/50 transition">
+                            <input type="checkbox" class="mt-0.5 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-slate-300 rounded">
+                            <span class="text-slate-700">Medir el aceite de fritura y alistar paños de cocina limpios y secos para retirar la humedad de las papas.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN 2: TAREAS POR RECETA -->
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Receta 1 de Manuela -->
+                    <div class="space-y-4">
+                        <h3 class="text-slate-900 font-bold text-sm border-b border-slate-100 pb-2 flex justify-between">
+                            <span>🥕 Receta 1: Zanahoria y Cebollitas Glaseadas</span>
+                            <span class="text-red-700 font-mono text-xs">00:20:00 - 00:45:00</span>
+                        </h3>
+                        
+                        <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-slate-700">Ingredientes:</span>
+                            <p class="text-slate-600">Cebollas ocañeras: 120 Gramos, Zanahorias medianas: 450 Gramos, Azúcar blanca: 50 Gramos, Mantequilla: 50 Gramos, agua, sal, papel encerado.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="space-y-2">
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:20:00:</strong> Cortar zanahorias en tramos de 5 cm de largo y tornearlos dándoles forma de barril de 7 caras iguales. Pelar cebollas ocañeras.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:35:00:</strong> Disponer en olla con agua, azúcar, mantequilla y sal. Recortar un cartucho circular de papel encerado con orificio en el medio.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-meat-600 focus:ring-meat-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:40:00:</strong> Tapar con el cartucho de papel y cocinar a fuego bajo hasta que el líquido se evapore y queden envueltos en un glaseado brillante.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl text-xs text-blue-900 mt-2">
+                            <span class="font-bold block mb-1">🤝 Al colocar los vegetales a cocinar (00:45:00):</span>
+                            Pasar directamente a elaborar las papas paille de la Receta 2.
+                        </div>
+                    </div>
+
+                    <!-- Receta 2 de Manuela -->
+                    <div class="space-y-4">
+                        <h3 class="text-slate-900 font-bold text-sm border-b border-slate-100 pb-2 flex justify-between">
+                            <span>🍟 Receta 2: Papa Paille</span>
+                            <span class="text-amber-700 font-mono text-xs">00:45:00 - 01:30:00</span>
+                        </h3>
+
+                        <div class="bg-slate-50 p-4 rounded-xl text-xs space-y-2">
+                            <span class="font-bold text-slate-700">Ingredientes:</span>
+                            <p class="text-slate-600">Papa sabanera: 4 Unidades, Aceite para fritura profunda: 500 Mililitros, Sal fina de cocina.</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="space-y-2">
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>00:45:00:</strong> Rebanar y cortar las papas sabaneras en tiras extra delgadas usando la mandolina. Sumergir de inmediato en agua helada para soltar almidón.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>01:05:00:</strong> Escurrir muy bien las papas y extenderlas sobre paños secos. Frotar con cuidado para eliminar toda la humedad de la superficie.</span>
+                                </label>
+                                <label class="flex items-start gap-3 p-3 bg-white border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
+                                    <input type="checkbox" class="mt-0.5 h-4 w-4 text-amber-600 focus:ring-amber-500 border-slate-300 rounded">
+                                    <span class="text-xs text-slate-700"><strong>01:15:00:</strong> Calentar el aceite de fritura a 175 grados. Introducir las papas en porciones reducidas para evitar que baje el calor. Escurrir y salar de inmediato.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 p-3.5 rounded-xl text-xs text-blue-900 mt-2">
+                            <span class="font-bold block mb-1">🤝 Al terminar la fritura total (01:30:00):</span>
+                            Pasar a colaborar en el secado y repaso de la vajilla de montaje en la mesa de servicio.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer de la Aplicación -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-4 border-t border-slate-800 text-center no-print">
+        <p>👨‍🍳 Clase 15: Carnes de Res I - Planificación de Servicio Real - Cronómetro en marcha.</p>
+    </footer>
+
+    <!-- JavaScript para el cronómetro del servicio -->
+    <script>
+        function switchView(viewId) {
+            document.querySelectorAll('.view-pane').forEach(pane => {
+                pane.classList.add('hidden');
+            });
+            document.getElementById('view-' + viewId).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('bg-meat-700', 'text-white', 'shadow-sm');
+                tab.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+            });
+            
+            document.getElementById('tab-' + viewId).classList.add('bg-meat-700', 'text-white', 'shadow-sm');
+            document.getElementById('tab-' + viewId).classList.remove('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
         }
 
-        function processSource() {
-            const amount = parseFloat(document.getElementById('amount').value) || 0;
-            const gastos = amount * 0.30;
-            const total = amount;
-            const paymentSource = document.getElementById('payment-source').value;
-            let message = '';
+        // Lógica de tiempo en tiempo real con segundero exacto iniciando en 00:00:00
+        let totalElapsedSeconds = 0; // Segundos transcurridos desde el inicio
+        const totalDurationSeconds = 130 * 60; // 130 minutos (hasta las 2 horas y 10 minutos)
+        let timelineInterval = null;
 
-            if (paymentSource === 'nequi' || paymentSource === 'daviplata') {
-                message = 'Pase todo a Nu.';
-            } else if (paymentSource === 'bancolombia') {
-                const result = (total - gastos).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                message = `El monto que debes enviar a Nu es: $${result}`;
+        function updateClockDisplay() {
+            let currentSec = totalElapsedSeconds % 60;
+            let currentMin = Math.floor(totalElapsedSeconds / 60) % 60;
+            let currentHour = Math.floor(totalElapsedSeconds / 3600);
+            
+            let formattedHour = (currentHour < 10 ? '0' : '') + currentHour;
+            let formattedMin = (currentMin < 10 ? '0' : '') + currentMin;
+            let formattedSec = (currentSec < 10 ? '0' : '') + currentSec;
+            
+            document.getElementById('clock-display').innerText = formattedHour + ':' + formattedMin + ':' + formattedSec;
+        }
+
+        function toggleKitchenTimeline() {
+            const btn = document.getElementById('time-btn');
+            const speedToggle = document.getElementById('speed-toggle');
+            
+            if (timelineInterval) {
+                // Pausar
+                clearInterval(timelineInterval);
+                timelineInterval = null;
+                btn.innerText = 'Reanudar';
+                btn.className = "bg-amber-500 hover:bg-amber-600 active:scale-95 transition text-slate-950 px-2.5 py-1 rounded text-xs font-bold";
             } else {
-                message = 'Seleccione una opción válida de fuente de ingreso.';
+                // Iniciar
+                const speed = speedToggle.checked ? 60 : 1; // Si el acelerador está activo, 1 segundo real = 1 minuto de clase (60 seg transcurridos)
+                
+                timelineInterval = setInterval(() => {
+                    if (totalElapsedSeconds < totalDurationSeconds) {
+                        totalElapsedSeconds += speed;
+                        if (totalElapsedSeconds > totalDurationSeconds) {
+                            totalElapsedSeconds = totalDurationSeconds;
+                        }
+                        updateClockDisplay();
+                    } else {
+                        clearInterval(timelineInterval);
+                        timelineInterval = null;
+                        document.getElementById('clock-display').innerText = "02:10:00 - ¡SERVIR!";
+                        document.getElementById('clock-display').className = "text-xl sm:text-2xl font-mono font-bold text-red-500 animate-pulse";
+                        btn.innerText = 'Servicio Terminado';
+                        btn.className = "bg-red-600 text-white px-2 py-1 rounded text-xs font-bold";
+                    }
+                }, 1000); // Se actualiza cada 1 segundo real
+                
+                btn.innerText = 'Pausar Reloj';
+                btn.className = "bg-red-500 hover:bg-red-600 active:scale-95 transition text-white px-2 py-1 rounded text-xs font-bold";
             }
+        }
 
-            document.getElementById('message').innerHTML = `<div>${message}</div>`;
+        function resetKitchenTimeline() {
+            clearInterval(timelineInterval);
+            timelineInterval = null;
+            totalElapsedSeconds = 0;
+            updateClockDisplay();
+            document.getElementById('clock-display').className = "text-xl sm:text-2xl font-mono font-bold text-amber-400";
+            document.getElementById('time-btn').innerText = 'Iniciar Servicio';
+            document.getElementById('time-btn').className = "bg-amber-500 hover:bg-amber-600 active:scale-95 transition text-slate-950 px-2.5 py-1 rounded text-xs font-bold";
         }
     </script>
 </body>
